@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:clickable="true"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/round_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_med" />
+
+            <LinearLayout
+                android:id="@+id/results_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/margin_med"
+                android:background="@drawable/layout_rounded_holder">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/layout_rounded_holder"
+                android:layout_marginBottom="@dimen/margin_med"
+                android:layout_marginLeft="@dimen/margin_med"
+                android:layout_marginRight="@dimen/margin_med">
+
+                <LinearLayout
+                    android:id="@+id/byes_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/margin_small"
+                    android:padding="@dimen/padding_med"
+                    android:background="@drawable/layout_rounded_element">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/byes_title"
+                        android:gravity="center_horizontal"
+                        android:textSize="@dimen/h2"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/margin_med"
+                android:layout_marginRight="@dimen/margin_med"
+                android:layout_marginBottom="@dimen/margin_med"
+                android:background="@drawable/layout_rounded_button">
+
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:id="@+id/prev_button"
+                    android:text="@string/button_prev"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_weight="1"
+                    android:onClick="onPrevRound"
+                    android:layout_gravity="start"/>
+
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:id="@+id/next_button"
+                    android:text="@string/button_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_weight="1"
+                    android:onClick="onNextRound"
+                    android:layout_gravity="end"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
