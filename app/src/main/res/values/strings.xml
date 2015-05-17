@@ -17,5 +17,8 @@
     <string name="byes_title">Byes</string>
     <string name="accept_warning">Go Back</string>
     <string name="cancel">Cancel</string>
+    <string name="email">Email Results</string>
+    <string name="send_mail">Send</string>
+    <string name="email_hint">Enter your email</string>
 
 </resources>

@@ -14,12 +14,14 @@ import android.widget.Button;
 import android.view.Gravity;
 import android.app.DialogFragment;
 import android.util.TypedValue;
+import android.widget.Toast;
 
 /**
  * This activity displays results for each round
  */
 public class ResultsActivity extends Activity
-                implements WarningFragment.WarningDialogListener {
+                implements WarningFragment.WarningDialogListener,
+                EmailFragment.EmailDialogListener {
 
     public static final String[] teamColors =
         {"#8f0000", "#00008f", "#006b24", "#cc9900", "#7a007a", "#009999", "#cc7a29", "#663300"};
@@ -31,6 +33,7 @@ public class ResultsActivity extends Activity
     private int numWomen;
     private int currRound;
     private Results results;
+    private TournamentManager tm;
 
     /**
      * Calculate results and create the display for the current round
@@ -51,7 +54,7 @@ public class ResultsActivity extends Activity
         numWomen = intent.getIntExtra("WOMEN", 0);
         currRound = 0;
 
-        TournamentManager tm = new TournamentManager(numMen, numWomen, rounds, teams, teamSize);
+        tm = new TournamentManager(numMen, numWomen, rounds, teams, teamSize);
         tm.run();
         results = tm.getResults();
 
@@ -190,6 +193,38 @@ public class ResultsActivity extends Activity
     public void onPrevRound(View view) {
         currRound--;
         setContentView(setRound(currRound));
+    }
+
+    /**
+     * Called when the user clicks the email results button.
+     * Opens a new fragment to send an email.
+     *
+     * @param view the clicked button
+     */
+    public void onEmailResults(View view) {
+        DialogFragment newFragment = new EmailFragment();
+        newFragment.show(getFragmentManager(), "email");
+    }
+
+    /**
+     * Called when the user enters an email address to send results to
+     * Open email to send results.
+     */
+    public void onEmailPositiveClick(DialogFragment dialog, String email) {
+        String emailBody = "Running with " + numMen + " men, " + numWomen + " women, " +
+                            rounds + " rounds, " + teams + " teams, " + teamSize + " players per team. \n\n" +
+                            results + "\n" + tm.debugInfo();
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{email});
+        i.putExtra(Intent.EXTRA_SUBJECT, "Group Tournament Results");
+        i.putExtra(Intent.EXTRA_TEXT   , emailBody);
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast toast = Toast.makeText(this, "There are no email clients installed", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     /**

@@ -93,6 +93,17 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/email_button"
+                android:text="@string/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:background="@drawable/layout_rounded_button"
+                android:onClick="onEmailResults" />
+
         </LinearLayout>
 
     </ScrollView>

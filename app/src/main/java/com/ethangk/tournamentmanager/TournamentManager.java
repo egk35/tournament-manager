@@ -161,4 +161,19 @@ public class TournamentManager {
 		sb.append("}");
 		return sb.toString();
 	}
+
+    public String debugInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Debug Info\n\n");
+        sb.append("Byes: \n\n");
+        for (Player p : players) {
+            sb.append(p + " " + p.debugByes() + "\n");
+        }
+        sb.append("\n\n");
+        sb.append("Play Counts: \n\n");
+        for (Player p : players) {
+            sb.append(p + " " + p.debugPlayCounts() + "\n");
+        }
+        return sb.toString();
+    }
 }

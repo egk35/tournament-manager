@@ -55,4 +55,25 @@ public class Results {
     public Player[] getByes(int round) {
         return byes[round];
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int round = 0; round < results.length; round++) {
+            sb.append("Round " + (round + 1) + "\n\n");
+            sb.append("Teams: \n");
+            Team[] teams = results[round];
+            for (Team t : teams) {
+                sb.append(t + "\n");
+            }
+            sb.append("\n");
+            sb.append("Byes: \n");
+            Player[] bs = byes[round];
+            for (Player p : bs) {
+                sb.append(p + " ");
+            }
+            sb.append("\n\n");
+        }
+        return sb.toString();
+    }
 }
